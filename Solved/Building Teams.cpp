@@ -19,7 +19,6 @@ void dfs(int curr){
                 is_divided[child] = true;
                 dfs(child);
             }
-            // else if(is_divided[child] && is_divided[curr] && team[])
             else if(is_divided[child] && team[child] == team[curr]) {
                 no_ans = 1;
                 return;
