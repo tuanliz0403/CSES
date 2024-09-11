@@ -43,7 +43,7 @@ signed main(){
     ll n;
     cin >> n;
     vector<tri> arr;
-    bool is_contained[n];
+    int is_contained[n];
     fo(0,n-1){
         int x, y;
         cin >> x >> y;
@@ -53,18 +53,21 @@ signed main(){
     sort(arr.begin(), arr.end(), customcomparator1);
     int r = INT_MAX;
     for(auto i = arr.rbegin(); i != arr.rend(); ++i){
-        is_contained[(*i).pos] = (*i).se >= r;
+        is_contained[(*i).pos] += (*i).se >= r?1:0;
         r = min(r, (*i).se);
     }
-    for(auto i:is_contained) cout << i space;
+    for(auto i:is_contained) {
+         i = 0;
+        cout << i space;
+    }
     r = 0;cen
     for(auto i:arr){
-        is_contained[i.pos] = i.se <= r;
+        is_contained[i.pos] += (i.se <= r? 1:0);
         r = max(r, i.se);
     }
     for(auto i:is_contained) {
         cout << i space;
-        i = false;
+        i = 0;
     }
     return 0;
 }
