@@ -1,103 +1,125 @@
 #include <bits/stdc++.h>
-#define ll long long
-#define cen cout << "\n";
-#define space << " "
-#define f0(n) for (ll i = 0; i < n; i++)
-#define fo(a, b) for (ll i = a; i <= b; i++)
-#define pb push_back
-#define se second
-#define fi first
-#define mp(x, y) make_pair(x, y)
-#define vec vector
-#define ins insert
-#define begin begin()
-#define end end()
+#define cen cout << endl;
 using namespace std;
-const ll MOD = 1e9 + 7;
-const ll mxn = 2e5 + 7;
-const ll inf = LLONG_MAX;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-
-int arr[mxn];
-
-struct node
-{
-    int value;
-    int ind;
-    node *left = NULL;
-    node *right = NULL;
-};
-
-node *root = new node;
-
-int get(node* cur, int l, int r, int v)
-{
-    if(cur->value < v) return 0;
-    if(l == r)
-    {
-        cur->value -= v;
-        return cur->ind;
-    }
-
-    int mid = l + (r - l) / 2;
-    if(cur->left->value >= v)
-    {
-        int idx = get(cur->left, l, mid, v);
-        cur->value = max(cur->left->value, cur->right->value);
-        return idx;
-    }
-    else
-    {
-        int idx = get(cur->right, mid + 1, r, v);
-        cur->value = max(cur->left->value, cur->right->value);
-        return idx;
-    }
-    return 0;
+ 
+char mat[1002][1002];
+const int xi[4] = {1,0,-1,0};
+const int yi[4] = {0,1,0,-1};
+typedef pair<int,int> pi;
+queue<pi> q;
+vector<char> p;
+string ans;
+bool check = true;
+int target_x, target_y;
+ 
+void domain_expansion(int x, int y){
+ 
 }
-
-void bld(node *cur, int l, int r)
-{
-    if (l == r)
-    {
-        cur->value = arr[l];
-        cur->ind = l;
-        return;
+ 
+int main(){
+    int n, m;
+    char temp;
+    cin >> n >> m;
+    for(int i = 1; i <= n; i++)
+        for(int j = 1; j <= m; j++) {
+            cin >> mat[i][j];
+            if(mat[i][j] == 'A') q.push({i,j});
+            if(mat[i][j] == 'B') {
+                target_x = i;
+                target_y = j;
+            }
+        }
+    while(!q.empty() && check){
+        int x = q.front().first, y = q.front().second;
+        q.pop();
+//
+        int new_x = x +xi[0], new_y = y + yi[0];
+        if(mat[new_x][new_y] == '.' || mat[new_x][new_y] == 'B') {
+        mat[new_x][new_y] = 'D';
+        q.push({new_x,new_y});
+        if(new_x == target_x && new_y == target_y){
+                check = false;
+                int a = target_x, b = target_y;
+                while(true){
+                    if(mat[a][b] == 'A') break;
+                    ans += mat[a][b];
+                    if(mat[a][b] == 'D') {a -= xi[0]; b-=yi[0];}
+                    else if(mat[a][b] == 'R') {a -= xi[1]; b-=yi[1];}
+                    else if(mat[a][b] == 'U') {a -= xi[2]; b-=yi[2];}
+                    else if(mat[a][b] == 'L') {a -= xi[3]; b-=yi[3];}
+                }
+                reverse(ans.begin(), ans.end());
+                cout << "YES" << endl << ans.length() << endl;
+                cout << ans;
+                return 0;
+            }
+        }
+//
+            new_x = x +xi[1], new_y = y + yi[1];
+        if(mat[new_x][new_y] == '.' || mat[new_x][new_y] == 'B') {
+        mat[new_x][new_y] = 'R';
+        q.push({new_x,new_y});
+        if(new_x == target_x && new_y == target_y){
+                check = false;
+                int a = target_x, b = target_y;
+                while(true){
+                    if(mat[a][b] == 'A') break;
+                    ans += mat[a][b];
+                    if(mat[a][b] == 'D') {a -= xi[0]; b-=yi[0];}
+                    else if(mat[a][b] == 'R') {a -= xi[1]; b-=yi[1];}
+                    else if(mat[a][b] == 'U') {a -= xi[2]; b-=yi[2];}
+                    else if(mat[a][b] == 'L') {a -= xi[3]; b-=yi[3];}
+                }
+                reverse(ans.begin(), ans.end());
+                cout << "YES" << endl << ans.length() << endl;
+                cout << ans;
+                return 0;
+            }
+        }
+//
+            new_x = x +xi[2], new_y = y + yi[2];
+        if(mat[new_x][new_y] == '.' || mat[new_x][new_y] == 'B') {
+        mat[new_x][new_y] = 'U';
+        q.push({new_x,new_y});
+        if(new_x == target_x && new_y == target_y){
+                check = false;
+                int a = target_x, b = target_y;
+                while(true){
+                    if(mat[a][b] == 'A') break;
+                    ans += mat[a][b];
+                    if(mat[a][b] == 'D') {a -= xi[0]; b-=yi[0];}
+                    else if(mat[a][b] == 'R') {a -= xi[1]; b-=yi[1];}
+                    else if(mat[a][b] == 'U') {a -= xi[2]; b-=yi[2];}
+                    else if(mat[a][b] == 'L') {a -= xi[3]; b-=yi[3];}
+                }
+                reverse(ans.begin(), ans.end());
+                cout << "YES" << endl << ans.length() << endl;
+                cout << ans;
+                return 0;
+            }
+        }
+//
+        new_x = x +xi[3], new_y = y + yi[3];
+        if(mat[new_x][new_y] == '.' || mat[new_x][new_y] == 'B') {
+        mat[new_x][new_y] = 'L';
+        q.push({new_x,new_y});
+        if(new_x == target_x && new_y == target_y){
+                check = false;
+                int a = target_x, b = target_y;
+                while(true){
+                    if(mat[a][b] == 'A') break;
+                    ans += mat[a][b];
+                    if(mat[a][b] == 'D') {a -= xi[0]; b-=yi[0];}
+                    else if(mat[a][b] == 'R') {a -= xi[1]; b-=yi[1];}
+                    else if(mat[a][b] == 'U') {a -= xi[2]; b-=yi[2];}
+                    else if(mat[a][b] == 'L') {a -= xi[3]; b-=yi[3];}
+                }
+                reverse(ans.begin(), ans.end());
+                cout << "YES" << endl << ans.length() << endl;
+                cout << ans;
+                return 0;
+            }
+        }
     }
-    int mid = l + (r - l) / 2;
-    if (cur->left == NULL)
-        cur->left = new node;
-    bld(cur->left, l, mid);
-    if (cur->right == NULL)
-        cur->right = new node;
-    bld(cur->right, mid + 1, r);
-    if (cur->left->value > cur->right->value)
-    {
-        cur->value = cur->left->value;
-        cur->ind = cur->left->ind;
-    }
-    else
-    {
-        cur->value = cur->right->value;
-        cur->ind = cur->right->ind;
-    }
-    return;
-}
-
-signed main()
-{
-    ios_base::sync_with_stdio(NULL);
-    cin.tie(0);
-    // ifstream cin("file.inp");
-    // ofstream cout("file.out");
-    int n, q;
-    cin >> n >> q;
-    fo(1, n) cin >> arr[i];
-    bld(root, 1, n);
-    f0(q){
-        int g;
-        cin >> g;
-        cout << get(root, 1, n, g) space;
-    }
-    return 0;
+    cout << "NO";
 }
