@@ -10,8 +10,8 @@
 #define mp(x, y) make_pair(x, y)
 #define vec vector
 #define ins insert
-// #define begin begin()
-// #define end end()
+#define begin begin()
+#define end end()
 using namespace std;
 const ll MOD = 1e9 + 7;
 const ll mxn = 1e6 + 7;
@@ -19,12 +19,16 @@ const ll inf = LLONG_MAX;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
 
+/******************************************MY VARIABLES******************************************/
+
+/******************************************MY FUNCTIONS******************************************/
+
 signed main()
 {
 	ios_base::sync_with_stdio(NULL);
 	cin.tie(0);
-	// ifstream cin("file.inp");
-	// ofstream cout("file.out");
-	cout << "hello";
+	ifstream cin("file.inp");
+	ofstream cout("file.out");
+
 	return 0;
 }
