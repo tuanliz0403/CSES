@@ -20,15 +20,27 @@ typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
 
 /******************************************MY VARIABLES******************************************/
-
+map<ll, bool> M;
 /******************************************MY FUNCTIONS******************************************/
 
 signed main()
 {
 	ios_base::sync_with_stdio(NULL);
 	cin.tie(0);
-	ifstream cin("file.inp");
-	ofstream cout("file.out");
-
-	return 0;
+  //ifstream cin("file.inp");
+	//ofstream cout("file.out");
+  uint32_t n;
+	cin >> n;
+  cout << bitset<32>(n);
+  cen;
+	uint32_t ans = 0;
+        uint32_t temp = 1 << 31;
+        while(n)
+        {
+            if(n & 1) ans = ans + temp;
+            n>>=1;
+            temp>>=1;
+        }
+  cout << bitset<32>(ans);
+  return 0;
 }
