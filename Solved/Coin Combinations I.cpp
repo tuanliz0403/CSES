@@ -25,25 +25,25 @@ int n, k;
 
 signed main()
 {
-  ios_base::sync_with_stdio(NULL);
-  cin.tie(0);
-  // ifstream cin("file.inp");
-  // ofstream cout("file.out");
-  cin >> n >> k;
-  vector<int> coin(n);
-  f0(n) cin >> coin[i];
-  vector<int> ans(k + 1, 0);
-  ans[0] = 0;
-  for (int i = 1; i <= k; i++)
-  {
-    for (int j = 0; j < n; j++)
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(0);
+    // ifstream cin("file.inp");
+    // ofstream cout("file.out");
+    cin >> n >> k;
+    vector<int> coin(n);
+    f0(n) cin >> coin[i];
+    vector<int> ans(k + 1, 0);
+    ans[0] = 0;
+    for (int i = 1; i <= k; i++)
     {
-      if (i - coin[j] > 0 && ans[i - coin[j]] != 0)
-        ans[i] = (ans[i] + ans[i - coin[j]]) % MOD;
-      else if (i - coin[j] == 0)
-        ans[i] = (ans[i] + 1) % MOD;
+        for (int j = 0; j < n; j++)
+        {
+            if (i - coin[j] > 0 && ans[i - coin[j]] != 0)
+                ans[i] = (ans[i] + ans[i - coin[j]]) % MOD;
+            else if (i - coin[j] == 0)
+                ans[i] = (ans[i] + 1) % MOD;
+        }
     }
-  }
-  cout << ans[k];
-  return 0;
+    cout << ans[k];
+    return 0;
 }
