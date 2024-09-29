@@ -26,32 +26,32 @@ typedef pair<ll, ll> pll;
 /******************************************MY FUNCTIONS******************************************/
 ll binsearch(ll low, ll high, ll target, vector<ll> *machine)
 {
-  while (low != high)
-  {
-    ll mid = low + (high - low) / 2;
-    ll sum = 0;
-    for (ll i : (*machine))
-      sum += (mid / i);
-    if (sum < target)
-      low = mid + 1;
-    else
-      high = mid;
-  }
-  return low;
+    while (low != high)
+    {
+        ll mid = low + (high - low) / 2;
+        ll sum = 0;
+        for (ll i : (*machine))
+            sum += (mid / i);
+        if (sum < target)
+            low = mid + 1;
+        else
+            high = mid;
+    }
+    return low;
 }
 
 signed main()
 {
-  ios_base::sync_with_stdio(NULL);
-  cin.tie(0);
-  // ifstream cin("file.inp");
-  // ofstream cout("file.out");
-  ll n, t;
-  cin >> n >> t;
-  vector<ll> machine(n, 0);
-  f0(n) cin >> machine[i];
-  sort(machine.begin, machine.end);
-  ll INF = t * machine[0];
-  cout << binsearch(1, INF, t, &machine);
-  return 0;
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(0);
+    // ifstream cin("file.inp");
+    // ofstream cout("file.out");
+    ll n, t;
+    cin >> n >> t;
+    vector<ll> machine(n, 0);
+    f0(n) cin >> machine[i];
+    sort(machine.begin, machine.end);
+    ll INF = t * machine[0];
+    cout << binsearch(1, INF, t, &machine);
+    return 0;
 }
