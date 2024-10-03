@@ -22,28 +22,36 @@ typedef pair<ll, ll> pll;
 /******************************************MY VARIABLES******************************************/
 int n, k;
 /******************************************MY FUNCTIONS******************************************/
-
+class Solution
+{
+public:
+  int minSubarray(vector<int> &num, int p)
+  {
+    int n = num.size();
+    vector<long long> pre(n + 1, 0);
+    int current = 0;
+    for (int i = 0; i < n; i++)
+    {
+      current += num[i];
+      pre[i + 1] = current;
+    }
+    int rem = current % p;
+    for (int i : pre)
+      cout << i space;
+    return 0;
+  }
+};
 signed main()
 {
   ios_base::sync_with_stdio(NULL);
   cin.tie(0);
-  // ifstream cin("file.inp");
+  ifstream cin("file.inp");
   // ofstream cout("file.out");
-  cin >> n >> k;
-  vector<int> coin(n);
-  f0(n) cin >> coin[i];
-  vector<int> ans(k + 1, 0);
-  ans[0] = 0;
-  for (int j = 0; j < n; j++)
-  {
-    for (int i = 1; i <= k; i++)
-    {
-      if (i - coin[j] > 0 && ans[i - coin[j]] != 0)
-        ans[i] = (ans[i] + ans[i - coin[j]]) % MOD;
-      else if (i - coin[j] == 0)
-        ans[i] = (ans[i] + 1) % MOD;
-    }
-  }
-  cout << ans[k];
-  return 0;
+  vector<int> arr;
+  int temp;
+  int p = 6;
+  while (cin >> temp)
+    arr.push_back(temp);
+  Solution solve;
+  int ans = solve.minSubarray(arr, p);
 }
